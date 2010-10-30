@@ -1,0 +1,9 @@
+<div id="logo"><a href="{% url fickst.views.index %}">Pony</a></div>
+
+{% if messages %}
+  <ul id="message">
+    {% for message in messages %}
+      <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
