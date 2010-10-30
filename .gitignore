@@ -1,0 +1,3 @@
+*.py[co]
+.DS_Store
+pony/env/settings_local.py
