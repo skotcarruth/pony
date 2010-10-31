@@ -66,5 +66,8 @@ form label {
   padding-top: 3px;
 }
 form input, form select, form textarea {
-  width: 200px;
+  width: 250px;
+}
+form textarea {
+  height: 80px;
 }

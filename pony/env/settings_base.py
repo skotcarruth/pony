@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
     'south',
     'users',
+    'gifts',
 )
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'

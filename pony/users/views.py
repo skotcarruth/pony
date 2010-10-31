@@ -34,29 +34,29 @@ def dashboard(request):
     return render_to_response('users/dashboard.html', {
     }, RequestContext(request))
 
-# def register(request):
-#     """Sign up page."""
-#     if request.user.is_authenticated():
-#         messages.error(request, 'You are already logged in. Please log out before registering.')
-#         return redirect('hawbnawb.views.home')
-# 
-#     if request.method == 'POST':
-#         register_form = forms.RegisterForm(request.POST)
-#         if register_form.is_valid():
-#             User.objects.create_user(
-#                 register_form.cleaned_data['username'],
-#                 register_form.cleaned_data['email'],
-#                 register_form.cleaned_data['password'],
-#             )
-#             user = auth.authenticate(
-#                 username=register_form.cleaned_data['username'],
-#                 password=register_form.cleaned_data['password'],
-#             )
-#             auth.login(request, user)
-#             return redirect('hawbnawb.accounts.views.add')
-#     else:
-#         register_form = forms.RegisterForm()
-# 
-#     return render_to_response('users/register.html', {
-#         'register_form': register_form,
-#     }, RequestContext(request))
+def register(request):
+    """Sign up page."""
+    if request.user.is_authenticated():
+        messages.error(request, 'You are already logged in. Please log out before registering.')
+        return redirect('hawbnawb.views.home')
+
+    if request.method == 'POST':
+        register_form = forms.RegisterForm(request.POST)
+        if register_form.is_valid():
+            User.objects.create_user(
+                register_form.cleaned_data['username'],
+                register_form.cleaned_data['email'],
+                register_form.cleaned_data['password'],
+            )
+            user = auth.authenticate(
+                username=register_form.cleaned_data['username'],
+                password=register_form.cleaned_data['password'],
+            )
+            auth.login(request, user)
+            return redirect('hawbnawb.accounts.views.add')
+    else:
+        register_form = forms.RegisterForm()
+
+    return render_to_response('users/register.html', {
+        'register_form': register_form,
+    }, RequestContext(request))
