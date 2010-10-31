@@ -105,3 +105,8 @@ INSTALLED_APPS = (
     'south',
     'users',
 )
+
+AUTH_PROFILE_MODULE = 'users.UserProfile'
+LOGIN_REDIRECT_URL = '/user/dashboard/'
+LOGIN_URL = '/user/login/'
+LOGOUT_URL = '/'
