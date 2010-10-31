@@ -8,6 +8,63 @@ html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pr
 body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
 /* Begin Pony CSS */
+html, body {
+  background-color: #EEE;
+}
+#hd, #bd, #ft {
+  width: 780px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  background-color: #FFF;
+  border: 1px solid #AAA;
+}
+#hd, #bd {
+  border-bottom: none;
+}
+#logo {
+  font-size: 24px;
+  font-weight: bold;
+  float: left;
+}
+#user {
+  float: right;
+}
 .clear {
   clear: both;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+h1 {
+  font-size: 36px;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 22px;
+}
+
+/* Forms CSS */
+form p {
+  margin: 10px 0;
+}
+form p.submit {
+  padding-left: 110px;
+}
+form p.submit input {
+  width: auto;
+}
+form label {
+  display: block;
+  float: left;
+  width: 100px;
+  font-weight: bold;
+  text-align: right;
+  margin-right: 10px;
+  padding-top: 3px;
+}
+form input, form select, form textarea {
+  width: 200px;
 }
