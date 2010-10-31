@@ -6,7 +6,33 @@
 {% block bd %}
   <h1>{{ gift.name|capfirst }}</h1>
   <p>{{ gift.date|date:"m/d/Y" }}</p>
-  <img src="{{ gift.image }}" />
+
+  {% if request.user == gift.user %}
+    <div id="share">
+      <div id="share_facebook">
+        Share on Facebook...
+      </div>
+      <div id="share_twitter">
+        Share on Twitter...
+      </div>
+      <div id="share_email">
+        Share through email...
+      </div>
+    </div>
+  {% endif %}
+
+  {% if gift.image %}
+    <img src="{{ gift.image. }}" />
+  {% endif %}
   <p>{{ gift.description }}</p>
   <p>${{ gift.price|intcomma }}</p>
+
+  {% if request.user != gift.user %}
+    <div id="give">
+      <a href="{% url pony.gifts.views.give gift_id=gift.id %}">
+        Give to this Pony
+      </a>
+    </div>
+  {% endif %}
+
 {% endblock %}

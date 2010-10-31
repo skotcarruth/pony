@@ -23,6 +23,8 @@ class Gift(models.Model):
     price = models.PositiveIntegerField()
     image = models.ImageField(upload_to='uploads/gift_images/', blank=True)
 
+    shared = models.BooleanField(default=False)
+
     gift_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=DRAFT)
     created_ts = models.DateTimeField(auto_now_add=True)

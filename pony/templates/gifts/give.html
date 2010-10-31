@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}{{ block.super }} | Ponies | {{ gift.name|capfirst }}{% endblock %}
+
+{% block bd %}
+  <h1>{{ gift.name|capfirst }}</h1>
+  <p>{{ gift.date|date:"m/d/Y" }}</p>
+
+  <h2>Give to this gift:</h2>
+  <p>Workin on it...</p>
+{% endblock %}
