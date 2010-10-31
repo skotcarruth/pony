@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
+from pony.gifts.models import Gift
 from pony.users import forms
 from pony.users.models import UserProfile
 
@@ -32,7 +33,9 @@ def logout(request):
 @login_required
 def dashboard(request):
     """Allows a user to change settings and see things."""
+    gifts = Gift.objects.filter(user=request.user)
     return render_to_response('users/dashboard.html', {
+        'gifts': gifts,
     }, RequestContext(request))
 
 def register(request):

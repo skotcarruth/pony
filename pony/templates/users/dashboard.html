@@ -4,5 +4,20 @@
 
 {% block bd %}
   <h1>Dashboard</h1>
-  <p>Coming soon..... :)</p>
+
+  <h2>Your Ponies</h2>
+  {% if gifts %}
+    <ul id="gifts">
+      {% for gift in gifts %}
+        <li>
+          <a href="{{ gift.get_absolute_url }}">{{ gift.name|capfirst }}</a>
+          ({{ gift.gift_date|date:"m/d/Y" }}) -
+          {{ gift.get_status_display|capfirst }}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p id="gifts">You don't have any ponies yet. <a href="{% url pony.gifts.views.add %}">Add one!</a></p>
+  {% endif %}
+
 {% endblock %}
