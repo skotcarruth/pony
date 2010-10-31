@@ -4,7 +4,7 @@
 {% block title %}{{ block.super }} | Ponies | {{ gift.name|capfirst }}{% endblock %}
 
 {% block bd %}
-  <h1>Ponies | {{ gift.name|capfirst }}</h1>
+  <h1>{{ gift.name|capfirst }}</h1>
   <p>{{ gift.date|date:"m/d/Y" }}</p>
   <img src="{{ gift.image }}" />
   <p>{{ gift.description }}</p>

@@ -5,22 +5,24 @@ from django.contrib.auth.models import User
 
 class RegisterForm(forms.Form):
     """Registration sign up form."""
-    username = forms.CharField(max_length=30)
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField(max_length=30)
     password = forms.CharField(min_length=4, max_length=50, widget=forms.PasswordInput)
     password_confirm = forms.CharField(min_length=4, max_length=50, widget=forms.PasswordInput, label='Confirm')
+    birthday = forms.DateField()
 
-    def clean_username(self):
-        # Ensure username is lowercased and is not taken.
-        username = self.cleaned_data['username']
-        if username:
-            username = username.lower()
+    def clean_email(self):
+        # Ensure email is lowercased and is not taken.
+        email = self.cleaned_data['email']
+        if email:
+            email = email.lower()
         try:
-            User.objects.get(username=username)
+            User.objects.get(username=email)
         except User.DoesNotExist:
             pass
         else:
             raise forms.ValidationError('That username is already taken.')
-        return username
+        return email
 
     def clean(self):
         # Verify that the passwords matched.
@@ -32,26 +34,26 @@ class RegisterForm(forms.Form):
 
 class LoginForm(forms.Form):
     """User login form."""
-    username = forms.CharField(max_length=30)
+    email = forms.EmailField(max_length=30)
     password = forms.CharField(min_length=4, max_length=50, widget=forms.PasswordInput)
 
     def __init__(self, *args, **kwargs):
         super(LoginForm, self).__init__(*args, **kwargs)
         self._user = None
 
-    def clean_username(self):
-        # Ensure username is lowercased
-        username = self.cleaned_data['username']
-        if username:
-            username = username.lower()
-        return username
+    def clean_email(self):
+        # Ensure email is lowercased
+        email = self.cleaned_data['email']
+        if email:
+            email = email.lower()
+        return email
 
     def clean(self):
         # Validate the login credentials
-        username = self.cleaned_data['username']
+        email = self.cleaned_data['email']
         password = self.cleaned_data['password']
-        if username and password:
-            self._user = auth.authenticate(username=username, password=password)
+        if email and password:
+            self._user = auth.authenticate(username=email, password=password)
             if self._user is None:
                 raise forms.ValidationError('Incorrect login.')
             elif not self._user.is_active:

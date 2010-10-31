@@ -16,14 +16,14 @@ class Gift(models.Model):
     )
     VISIBLE_STATUSES = (ACTIVE, COMPLETED,)
 
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, null=True)
 
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.PositiveIntegerField()
     image = models.ImageField(upload_to='uploads/gift_images/', blank=True)
 
-    gift_date = models.DateField()
+    gift_date = models.DateField(null=True, blank=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=DRAFT)
     created_ts = models.DateTimeField(auto_now_add=True)
     updated_ts = models.DateTimeField(auto_now=True)

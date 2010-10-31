@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}{{ block.super }} | Register{% endblock %}
+
+{% block bd %}
+  <h1>Register</h1>
+
+  {% if gift %}
+    <p>Please register or login to create your pony. ({{ gift.name|capfirst }})</p>
+  {% endif %}
+
+  <p>
+    Already registered?
+    <a href="{% url pony.users.views.login %}{% if gift %}?next={{ gift.get_absolute_url }}{% endif %}">Login</a>
+  </p>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ register_form.as_p }}
+    <p class="submit"><input type="submit" value="Submit" /></p>
+  </form>
+{% endblock %}

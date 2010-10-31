@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
 from pony.users import forms
+from pony.users.models import UserProfile
 
 
 def login(request):
@@ -36,27 +37,50 @@ def dashboard(request):
 
 def register(request):
     """Sign up page."""
+    # If you're already logged in, you shouldn't be here
     if request.user.is_authenticated():
-        messages.error(request, 'You are already logged in. Please log out before registering.')
-        return redirect('hawbnawb.views.home')
+        messages.error(request, 'You are already logged in.')
+        return redirect('pony.users.views.dashboard')
 
+    # Handle the registration form
     if request.method == 'POST':
         register_form = forms.RegisterForm(request.POST)
         if register_form.is_valid():
+            # Create the user and log them in
             User.objects.create_user(
-                register_form.cleaned_data['username'],
+                register_form.cleaned_data['email'],
                 register_form.cleaned_data['email'],
                 register_form.cleaned_data['password'],
             )
             user = auth.authenticate(
-                username=register_form.cleaned_data['username'],
+                username=register_form.cleaned_data['email'],
                 password=register_form.cleaned_data['password'],
             )
             auth.login(request, user)
-            return redirect('hawbnawb.accounts.views.add')
+
+            # Create the user profile
+            user_profile = UserProfile(
+                user=user,
+                name=register_form.cleaned_data['name'],
+                birthday=register_form.cleaned_data['birthday'],
+            )
+            user_profile.save()
+
+            # If the user session has a gift on it, redirect there
+            gift = request.session.get('gift', None)
+            if gift:
+                gift.user = user
+                gift.gift_date = user_profile.birthday
+                gift.status = gift.ACTIVE
+                gift.save()
+                del request.session['gift']
+                return redirect(gift)
+
+            return redirect('pony.users.views.dashboard')
     else:
         register_form = forms.RegisterForm()
 
     return render_to_response('users/register.html', {
+        'gift': request.session.get('gift', None),
         'register_form': register_form,
     }, RequestContext(request))
