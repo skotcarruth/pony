@@ -3,6 +3,11 @@
 
 {% block title %}{{ block.super }} | Ponies | {{ gift.name|capfirst }}{% endblock %}
 
+{% block js %}
+  {{ block.super }}
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/share.js"></script>
+{% endblock %}
+
 {% block bd %}
   <h1>{{ gift.name|capfirst }}</h1>
   <p>{{ gift.date|date:"m/d/Y" }}</p>
@@ -10,7 +15,7 @@
   {% if request.user == gift.user %}
     <div id="share">
       <div id="share_facebook">
-        Share on Facebook...
+        <button id="fb_connect_button">Connect with Facebook</button>
       </div>
       <div id="share_twitter">
         Share on Twitter...

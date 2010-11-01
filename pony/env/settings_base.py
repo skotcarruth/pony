@@ -74,6 +74,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'pony.context_processors.settings_object',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,6 +106,7 @@ INSTALLED_APPS = (
     'south',
     'users',
     'gifts',
+    'social',
 )
 
 AUTH_PROFILE_MODULE = 'users.UserProfile'

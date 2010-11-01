@@ -15,3 +15,6 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+FACEBOOK_APP_ID = '108483569216902'
+FACEBOOK_APP_SECRET = '5d33dc46eddfecd7da9e6dc29ae7b16b'

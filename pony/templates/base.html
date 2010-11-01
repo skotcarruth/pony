@@ -23,6 +23,14 @@
     {% block js %}
       <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.4.2.min.js"></script>
       <script type="text/javascript" src="{{ MEDIA_URL }}js/base.js"></script>
+      <script type="text/javascript">
+        pony.settings = {
+          request_domain: '{{ request.get_host }}',
+          request_secure: {{ request.is_secure|yesno:"true,false" }},
+          facebook_app_id: '{{ settings.FACEBOOK_APP_ID }}',
+          facebook_callback_url: '{% url pony.social.views.callback service="facebook" %}'
+        };
+      </script>
     {% endblock %}
   </body>
 </html>
