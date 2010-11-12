@@ -7,27 +7,18 @@ version: 2.8.1
 html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
 body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
-/* Begin Pony CSS */
+/* Basic */
 html, body {
-  background-color: #EEE;
+  background: #e2e0e2;
+  font-family: "Helvetica Neue",Helvetica,sans-serif;
 }
-#hd, #bd, #ft {
-  width: 780px;
+#bd {
+  background: url(/static/images/bg.gif) repeat;
+}
+#bd_content {
+  width: 960px;
   margin: 0 auto;
-  padding: 10px 20px;
-  background-color: #FFF;
-  border: 1px solid #AAA;
-}
-#hd, #bd {
-  border-bottom: none;
-}
-#logo {
-  font-size: 24px;
-  font-weight: bold;
-  float: left;
-}
-#user {
-  float: right;
+  padding: 20px 0 30px;
 }
 .clear {
   clear: both;
@@ -44,6 +35,106 @@ h2 {
 }
 h3 {
   font-size: 22px;
+}
+a {
+  text-decoration: none;
+}
+a:hover, a:focus {
+  text-decoration: underline;
+}
+.bold {
+  font-family: "Arial Black",Gadget,sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.purple, .purple a {
+  color: #bb9fbe;
+}
+
+/* Header */
+#hd {
+  height: 54px; /* keep this a multiple of 3px so the bg lines up */
+  background: url(/static/images/bg.gif) repeat;
+}
+#hd_container {
+  background: #111111;
+}
+#hd_content {
+  width: 960px;
+  margin: 0 auto;
+}
+#hd_shadow {
+  height: 7px;
+  background: url(/static/images/shadow.png) repeat-x;
+}
+#logo a {
+  background: url(/static/images/logo.png) no-repeat 0 5px;
+  width: 145px;
+  height: 34px;
+  padding: 5px 0;
+  text-indent: -10000px;
+  font-size: 24px;
+  font-weight: bold;
+  float: left;
+}
+#user {
+  float: right;
+  margin-top: 12px;
+}
+#user a {
+  margin-left: 10px;
+}
+
+/* Footer */
+#ft {
+  background: #e2e0e2;
+  border-top: 1px solid #d6d4d6;
+}
+#ft_content {
+  width: 960px;
+  margin: 0 auto;
+  padding: 12px 0 25px;
+}
+#ft_like {
+  float: left;
+}
+#more_info {
+  float: right;
+  text-align: right;
+}
+#more_info a {
+  color: #c7c7c7;
+}
+
+/* Body */
+#bd_help {
+  float: left;
+  width: 350px;
+  margin: 45px 0;
+}
+#bd_help p {
+  margin-bottom: 14px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #848484;
+}
+#bd_help p strong {
+  font-weight: bold;
+}
+#bd_box {
+  float: right;
+  width: 490px;
+  margin: 25px 0;
+  background: #ffffff;
+  padding: 20px 25px;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  box-shadow: 0 0 20px #999999;
+  -moz-box-shadow: 0 0 20px #999999;
+  -webkit-box-shadow: 0 0 20px #999999;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=20,Direction=0, Color='#999999')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=20, Direction=0, Color='#999999');
 }
 
 /* Forms CSS */
