@@ -1,20 +1,25 @@
-<div id="logo"><a href="{% url pony.views.index %}">Pony</a></div>
-<div id="user">
-  {% if request.user.is_authenticated %}
-    {{ request.user.username }} -
-    <a href="{% url pony.users.views.dashboard %}">dashboard</a> -
-    <a href="{% url pony.users.views.logout %}">logout</a>
-  {% else %}
-    <a href="{% url pony.users.views.login %}">login</a> -
-    <a href="">sign up</a>
-  {% endif %}
-</div>
-<div class="clear"></div>
+<div id="hd_container">
+  <div id="hd_content">
+    <div id="logo"><a href="{% url pony.views.index %}">Pony</a></div>
+    <div id="user" class="bold purple">
+      {% if request.user.is_authenticated %}
+        {{ request.user.username }}
+        <a href="{% url pony.users.views.dashboard %}">dashboard</a>
+        <a href="{% url pony.users.views.logout %}">logout</a>
+      {% else %}
+        <a href="{% url pony.users.views.login %}">login</a>
+        <a href="{% url pony.users.views.register %}">sign up</a>
+      {% endif %}
+    </div>
+    <div class="clear"></div>
 
-{% if messages %}
-  <ul id="message">
-    {% for message in messages %}
-      <li class="{{ message.tags }}">{{ message }}</li>
-    {% endfor %}
-  </ul>
-{% endif %}
+    {% if messages %}
+      <ul id="message">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</div>
+<div id="hd_shadow"></div>
