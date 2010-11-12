@@ -14,7 +14,9 @@
       {% block hd %}{% include "_header.html" %}{% endblock %}
     </div>
     <div id="bd">
-      {% block bd %}{% endblock %}
+      <div id="bd_content">
+        {% block bd %}{% endblock %}
+      </div>
     </div>
     <div id="ft">
       {% block ft %}{% include "_footer.html" %}{% endblock %}
@@ -32,7 +34,8 @@
           request_domain: '{{ request.get_host }}',
           request_secure: {{ request.is_secure|yesno:"true,false" }},
           facebook_app_id: '{{ settings.FACEBOOK_APP_ID }}',
-          facebook_callback_url: '{% url pony.social.views.callback service="facebook" %}'
+          facebook_callback_url: '{% url pony.social.views.callback service="facebook" %}',
+          facebook_token: '{{ request.user.get_profile.facebook_token }}'
         };
       </script>
     {% endblock %}

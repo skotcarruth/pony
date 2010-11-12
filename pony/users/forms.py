@@ -11,6 +11,9 @@ class RegisterForm(forms.Form):
     password_confirm = forms.CharField(min_length=4, max_length=50, widget=forms.PasswordInput, label='Confirm')
     birthday = forms.DateField()
 
+    facebook_token = forms.CharField(widget=forms.HiddenInput, required=False)
+    twitter_token = forms.CharField(widget=forms.HiddenInput, required=False)
+
     def clean_email(self):
         # Ensure email is lowercased and is not taken.
         email = self.cleaned_data['email']

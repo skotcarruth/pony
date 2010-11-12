@@ -66,6 +66,8 @@ def register(request):
                 user=user,
                 name=register_form.cleaned_data['name'],
                 birthday=register_form.cleaned_data['birthday'],
+                facebook_token=register_form.cleaned_data['facebook_token'],
+                twitter_token=register_form.cleaned_data['twitter_token'],
             )
             user_profile.save()
 

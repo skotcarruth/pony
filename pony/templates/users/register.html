@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block js %}
+  {{ block.super }}
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/share.js"></script>
+{% endblock %}
+
 {% block title %}{{ block.super }} | Register{% endblock %}
 
 {% block bd %}
@@ -13,6 +18,10 @@
     Already registered?
     <a href="{% url pony.users.views.login %}{% if gift %}?next={{ gift.get_absolute_url }}{% endif %}">Login</a>
   </p>
+
+  <div id="connect">
+    <button id="fb_connect_button" rel="register">Connect with Facebook</button>
+  </div>
 
   <form method="POST">
     {% csrf_token %}
