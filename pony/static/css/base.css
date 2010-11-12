@@ -138,27 +138,59 @@ a:hover, a:focus {
 }
 
 /* Forms CSS */
+#step_list {
+  margin: 5px 0 20px;
+}
+#step_list li {
+  display: inline;
+  padding: 0 16px;
+  color: #e5e4e5;
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#step_list li.selected {
+  color: #111111;
+}
 form p {
-  margin: 10px 0;
+  margin-bottom: 10px;
 }
 form p.submit {
-  padding-left: 110px;
+  text-align: right;
+  width: 464px;
 }
 form p.submit input {
+  border: none;
+  background: none;
   width: auto;
+  padding: 0;
+  margin-top: 10px;
+  cursor: pointer;
 }
 form label {
   display: block;
   float: left;
-  width: 100px;
+  width: 150px;
+  color: #919191;
+  text-transform: uppercase;
+  font-size: 14px;
   font-weight: bold;
   text-align: right;
   margin-right: 10px;
-  padding-top: 3px;
+  padding-top: 4px;
 }
 form input, form select, form textarea {
-  width: 250px;
+  width: 290px;
+  padding: 4px 6px;
+  border: 1px solid #aaaaaa;
+  background: url(/static/images/shadow_light.png) repeat-x;
 }
 form textarea {
-  height: 80px;
+  height: 70px;
+}
+form ul.errorlist {
+  padding-left: 160px;
+  font-weight: bold;
+  color: #af6161;
+  margin-bottom: 2px;
 }

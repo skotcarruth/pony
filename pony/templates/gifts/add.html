@@ -1,12 +1,25 @@
-{% extends "base.html" %}
+{% extends "base_box.html" %}
 
 {% block title %}{{ block.super }} | Create a Pony{% endblock %}
 
-{% block bd %}
-  <h1>Create a Pony</h1>
+{% block bd_help %}
+  <p>
+    <strong>FundMyPony</strong> helps you get exactly what you want for your
+    birthday by giving your friends an easy way to chip in!
+  </p>
+  <p>
+    Make a big birthday wish— we’ll help you make it come true.
+  </p>
+{% endblock %}
+
+{% block bd_box %}
+  <ul id="step_list">
+    <li class="selected">Step 1: What do you want?</li>
+    <li>Step 2</li>
+  </ul>
   <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <p class="submit"><input type="submit" value="Submit" /></p>
+    <p class="submit"><input type="submit" class="bold purple" value="Next Step &raquo;" /></p>
   </form>
 {% endblock %}
