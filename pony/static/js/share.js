@@ -40,7 +40,6 @@
     if (response['access_token']) {
       // Got the access token, so take the appropriate response
       pony.settings.facebook_token = response['access_token'];
-      console.log(response);
       var connect_button = $('#fb_connect_button');
       if (connect_button.attr('rel') == 'register') {
         pony.fb_handle_register(response);
@@ -66,14 +65,24 @@
   pony.fb_handle_register = function(response) {
     // Stuff the token into the form for user registration
     $('#id_facebook_token').val(response['access_token']);
-    // Change the connect button
-    $('#fb_connect_button').hide().after('<p>Thanks for connecting</p>');
 
     // Update the registration fields with facebook info
     pony.fb_query('me', function(data) {
       if (data.name) $('#id_name').val(data.name);
       if (data.email) $('#id_email').val(data.email);
       if (data.birthday) $('#id_birthday').val(data.birthday);
+    });
+
+    // Hide the connect box
+    pony.hide_connect_box();
+  };
+
+  pony.hide_connect_box = function() {
+    var connect = $('#connect');
+    connect.css('height', connect.height());
+    connect.empty().append('<span class="connect_thanks purple">Thanks for connecting.</span>');
+    connect.delay(1250).animate({'opacity': 0}, 250, function() {
+      connect.slideUp(250);
     });
   };
 

@@ -7,6 +7,10 @@ version: 2.8.1
 html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
 body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small;}select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}table{font-size:inherit;font:100%;}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
+/* Overwrite jquery ui-darkness theme with a few of our colors */
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border-color: #aaaaaa; background-color: #999999; background-image: url(images/ui-bg_glass_40_999999_1x400.png); }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border-color: #634766; background-color: #bb9fbe; background-image: url(images/ui-bg_inset-soft_30_bb9fbe_1x100.png); }
+
 /* Basic */
 html, body {
   background: #e2e0e2;
@@ -39,6 +43,8 @@ h3 {
   font-size: 20px;
 }
 a {
+  color: #bb9fbe;
+  font-weight: bold;
   text-decoration: none;
 }
 a:hover, a:focus {
@@ -145,7 +151,7 @@ a:hover, a:focus {
 
 /* Forms CSS */
 #step_list {
-  margin: 5px 0 24px;
+  margin: 5px 0;
 }
 #step_list li {
   display: inline;
@@ -157,6 +163,9 @@ a:hover, a:focus {
 }
 #step_list li.selected {
   color: #111111;
+}
+form {
+  margin-top: 25px;
 }
 form p {
   margin-bottom: 13px;
@@ -202,6 +211,11 @@ form ul.errorlist {
   color: #af6161;
   margin-bottom: 2px;
 }
+p.form_aside {
+  font-size: 12px;
+  color: #999;
+  padding: 0 16px;
+}
 
 /* File input style hackery */
 div.file_input {
@@ -245,4 +259,21 @@ div.fake_file_input span {
   -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+}
+
+/* Register */
+#connect {
+  text-align: center;
+  margin: 28px 0 20px;
+}
+#connect .connect_thanks {
+  padding: 5px 10px;
+  background: #EEEEEE;
+  border: 1px solid #AAAAAA;
+  font-size: 12px;
+  font-weight: bold;
+}
+#fb_connect_button, #tw_connect_button {
+  cursor: pointer;
+  margin: 0 8px;
 }

@@ -2,6 +2,14 @@
 
   var pony = window.pony = {};
 
+  pony.init_datepickers = function() {
+    $('.datepicker').datepicker({
+      'changeYear': true,
+      'yearRange': '-100:+0'
+    });
+  };
+  $(pony.init_datepickers);
+
   pony.get_root_uri = function() {
     return 'http' + (pony.settings.request_secure ? 's' : '') +
       '://' + pony.settings.request_domain;

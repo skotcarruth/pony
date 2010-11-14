@@ -9,7 +9,7 @@ class RegisterForm(forms.Form):
     email = forms.EmailField(max_length=30)
     password = forms.CharField(min_length=4, max_length=50, widget=forms.PasswordInput)
     password_confirm = forms.CharField(min_length=4, max_length=50, widget=forms.PasswordInput, label='Confirm')
-    birthday = forms.DateField()
+    birthday = forms.DateField(widget=forms.TextInput(attrs={'class': 'datepicker'}))
 
     facebook_token = forms.CharField(widget=forms.HiddenInput, required=False)
     twitter_token = forms.CharField(widget=forms.HiddenInput, required=False)
