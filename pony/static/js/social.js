@@ -1,5 +1,89 @@
 (function($) {
 
+  pony.tw_query = function(category, resource, params, method, callback) {
+    var url = pony.settings.twitter_query_url + method + '/' + category + '/' + resource;
+    $.getJSON(url, params, callback);
+  };
+
+  pony.tw_init = function() {
+    var button = $('#tw_connect_button');
+
+    // Get the auth url from the server
+    var callback_url = pony.get_root_uri() + pony.settings.twitter_callback_url;
+    $.getJSON(
+      pony.settings.twitter_authorize_url + '?callback_url=' + callback_url,
+      function(data) {
+        if (button.data('clicked') === true) {
+          // If the user already clicked connect, pop up immediately
+          pony.tw_auth_popup(data.authorize_url);
+        }
+        else {
+          // If the user has not clicked yet, merely store the auth url for later
+          button.data('auth_url', data.authorize_url);
+        }
+      }
+    );
+
+    // Hook up the connect button event
+    button.click(function() {
+      button.data('clicked', true);
+      if (button.data('auth_url')) {
+        pony.tw_auth_popup(button.data('auth_url'));
+      }
+    });
+  };
+  $(pony.tw_init);
+
+  pony.tw_auth_popup = function(auth_url) {
+    // Pop up the twitter auth url
+    var popup_left = (window.screen.width / 2) - 435;
+    var popup_top = (window.screen.height / 2) - 245;
+    var auth_popup = window.open(
+      auth_url,
+      'auth_window',
+      'status=0,toolbar=0,location=0,menubar=0,height=450,width=850,left=' +
+        popup_left + ',top=' + popup_top + ',screenX=' + popup_left +
+        ',screenY=' + popup_top
+    );
+  };
+
+  pony.tw_handle_callback = function(user) {
+    // Store the success/failure result in settings
+    if (user) {
+      pony.settings.twitter_username = user.username;
+      pony.settings.twitter_user_id = user.user_id;
+      var connect_button = $('#tw_connect_button');
+      if (connect_button.attr('rel') == 'register') {
+        pony.tw_handle_register();
+      }
+      else if (connect_button.attr('rel') == 'share') {
+        pony.tw_handle_share();
+      }
+    }
+    else {
+      pony.tw_handle_cancel();
+    }
+  };
+
+  pony.tw_handle_cancel = function() {
+    // Ah well, better luck next time...
+  };
+
+  pony.tw_handle_share = function() {
+    // Share it!
+    console.log('share');
+  };
+
+  pony.tw_handle_register = function() {
+    // Update the registration fields with facebook info
+    pony.tw_query('users', 'show', {'user_id': pony.settings.twitter_user_id, 'screen_name': pony.settings.twitter_username}, 'GET', function(data) {
+      if (data.name) $('#id_name').val(data.name);
+    });
+
+    // Hide the connect box
+    pony.hide_connect_box();
+  };
+
   pony.fb_query = function(id, callback) {
     var graph_url = 'https://graph.facebook.com/';
     if (!pony.settings.facebook_token) return;

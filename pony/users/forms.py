@@ -12,7 +12,6 @@ class RegisterForm(forms.Form):
     birthday = forms.DateField(widget=forms.TextInput(attrs={'class': 'datepicker'}))
 
     facebook_token = forms.CharField(widget=forms.HiddenInput, required=False)
-    twitter_token = forms.CharField(widget=forms.HiddenInput, required=False)
 
     def clean_email(self):
         # Ensure email is lowercased and is not taken.

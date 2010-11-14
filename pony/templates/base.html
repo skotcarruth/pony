@@ -42,7 +42,12 @@
           request_secure: {{ request.is_secure|yesno:"true,false" }},
           facebook_app_id: '{{ settings.FACEBOOK_APP_ID }}',
           facebook_callback_url: '{% url pony.social.views.callback service="facebook" %}',
-          facebook_token: '{{ request.user.get_profile.facebook_token }}'
+          facebook_token: '{{ request.user.get_profile.facebook_token }}',
+          twitter_authorize_url: '{% url pony.social.views.authorize_url service="twitter" %}',
+          twitter_callback_url: '{% url pony.social.views.callback service="twitter" %}',
+          twitter_query_url: '/social/oauth/twitter/',
+          twitter_username: '{{ request.user.get_profile.twitter_username }}',
+          twitter_user_id: '{{ request.user.get_profile.twitter_user_id }}'
         };
       </script>
     {% endblock %}

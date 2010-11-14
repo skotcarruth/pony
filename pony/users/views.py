@@ -67,8 +67,15 @@ def register(request):
                 name=register_form.cleaned_data['name'],
                 birthday=register_form.cleaned_data['birthday'],
                 facebook_token=register_form.cleaned_data['facebook_token'],
-                twitter_token=register_form.cleaned_data['twitter_token'],
             )
+            # Grab the twitter auth info from the session, if it's there
+            session_access_token = request.session.get('twitter_access_token', None)
+            if session_access_token:
+                user_profile.twitter_username = session_access_token['screen_name']
+                user_profile.twitter_user_id = session_access_token['user_id']
+                user_profile.twitter_token = session_access_token['oauth_token']
+                user_profile.twitter_token_secret = session_access_token['oauth_token_secret']
+            # Save the profile
             user_profile.save()
 
             # If the user session has a gift on it, redirect there
