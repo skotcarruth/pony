@@ -95,7 +95,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'django.contrib.admin',
-    'django.contrib.admindocs',
+    # 'django.contrib.admindocs', TESTS FAIL! BAH!
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

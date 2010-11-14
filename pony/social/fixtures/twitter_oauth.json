@@ -1,0 +1,32 @@
+[{
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+        "username": "test",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2010-11-14 01:36:16",
+        "groups": [],
+        "user_permissions": [],
+        "password": "sha1$17286$932cb14900283cd69a892f1b8e417d69616f6117",
+        "email": "test@test.com",
+        "date_joined": "2010-11-14 01:36:16"
+    }
+},
+{
+    "pk": 1,
+    "model": "users.userprofile",
+    "fields": {
+        "twitter_token": "72725663-mo0mzX4wCYhngblyPM6u3RroLGmqBVxZqMshC7rXx",
+        "twitter_user_id": "72725663",
+        "name": "Jeff Schenck",
+        "twitter_username": "jeffschenck",
+        "birthday": "1985-08-18",
+        "user": 1,
+        "facebook_token": "108483569216902|51da371686c2f607a13ab642-2542228|ZbESVP5__My3OzcF3VVaZDBnhWs",
+        "twitter_token_secret": "Wsh6RtFCKGepbuDyS52COQDd9jPBzgAk8Fnrx87Us"
+    }
+}]

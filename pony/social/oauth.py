@@ -15,6 +15,9 @@ class MissingRequestToken(HandlerException):
 class MissingAccessToken(HandlerException):
     pass
 
+class ServiceError(HandlerException):
+    pass
+
 class TwitterOAuth(object):
     """Common interface for OAuth and talking to social services."""
     REQUEST_TOKEN_URL = 'https://api.twitter.com/oauth/request_token'
@@ -48,11 +51,16 @@ class TwitterOAuth(object):
         return authorize_url
 
     def get_access_token(self, oauth_token, oauth_verifier):
+        # Query twitter for the access token
         consumer = oauth.Consumer(settings.TWITTER_KEY, settings.TWITTER_SECRET)
         token = oauth.Token(oauth_token, settings.TWITTER_SECRET)
         token.set_verifier(oauth_verifier)
         client = oauth.Client(consumer, token)
         resp, content = client.request(self.ACCESS_TOKEN_URL, 'POST')
+
+        # Test for success or error response
+        if resp['status'] != '200' or '<error>' in content:
+            raise ServiceError(content)
         self.access_token = dict(urlparse.parse_qsl(content))
         return self.access_token
 

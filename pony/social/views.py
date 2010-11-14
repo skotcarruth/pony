@@ -4,7 +4,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 
 from pony.decorators import json_response
-from pony.social.oauth import TwitterOAuth
+from pony.social.oauth import TwitterOAuth, ServiceError
 
 
 def callback(request, service=None):
@@ -19,9 +19,16 @@ def callback(request, service=None):
             # Fucked
             messages.error(request, 'Invalid OAuth callback. Please try again.')
             return render_to_response('social/twitter_callback.html', {'user': None})
-        # Score! Store the token on the session
+
         oauth = TwitterOAuth()
-        access_token = oauth.get_access_token(oauth_token, oauth_verifier)
+        try:
+            access_token = oauth.get_access_token(oauth_token, oauth_verifier)
+        except ServiceError:
+            # Fucked
+            messages.error(request, 'Invalid OAuth callback. Please try again.')
+            return render_to_response('social/twitter_callback.html', {'user': None})
+
+        # Score! Store the token on the session
         request.session['twitter_access_token'] = access_token
         return render_to_response('social/twitter_callback.html', {
             'user': {'username': access_token['screen_name'], 'user_id': access_token['user_id']},
