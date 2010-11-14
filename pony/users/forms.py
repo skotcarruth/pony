@@ -53,8 +53,8 @@ class LoginForm(forms.Form):
 
     def clean(self):
         # Validate the login credentials
-        email = self.cleaned_data['email']
-        password = self.cleaned_data['password']
+        email = self.cleaned_data.get('email', None)
+        password = self.cleaned_data.get('password', None)
         if email and password:
             self._user = auth.authenticate(username=email, password=password)
             if self._user is None:
