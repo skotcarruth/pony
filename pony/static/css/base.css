@@ -139,7 +139,7 @@ a:hover, a:focus {
 
 /* Forms CSS */
 #step_list {
-  margin: 5px 0 20px;
+  margin: 5px 0 24px;
 }
 #step_list li {
   display: inline;
@@ -153,7 +153,7 @@ a:hover, a:focus {
   color: #111111;
 }
 form p {
-  margin-bottom: 10px;
+  margin-bottom: 13px;
 }
 form p.submit {
   text-align: right;
@@ -177,13 +177,15 @@ form label {
   font-weight: bold;
   text-align: right;
   margin-right: 10px;
-  padding-top: 4px;
+  padding-top: 8px;
 }
 form input, form select, form textarea {
   width: 290px;
   padding: 4px 6px;
   border: 1px solid #aaaaaa;
   background: url(/static/images/shadow_light.png) repeat-x;
+  font-size: 18px;
+  color: #919191;
 }
 form textarea {
   height: 70px;
@@ -193,4 +195,48 @@ form ul.errorlist {
   font-weight: bold;
   color: #af6161;
   margin-bottom: 2px;
+}
+
+/* File input style hackery */
+div.file_input {
+  position: relative;
+}
+div.fake_file_input {
+  position: absolute;
+  top: 0;
+  left: 160px;
+  z-index: 1;
+  width: 304px;
+  height: 29px;
+}
+input.file_input {
+  position: relative;
+  margin-bottom: 4px;
+  text-align: right;
+  font-size: 16px;
+  -moz-opacity: 0;
+  filter: alpha(opacity:0);
+  opacity: 0;
+  z-index: 2;
+}
+div.fake_file_input input {
+  width: 210px;
+  float: left;
+}
+div.fake_file_input span {
+  display: block;
+  width: 70px;
+  height: 9px;
+  float: right;
+  border: 1px solid #aaaaaa;
+  background: #e5e4e5;
+  color: #848484;
+  text-align: center;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
