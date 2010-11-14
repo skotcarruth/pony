@@ -148,6 +148,11 @@ a:hover, a:focus {
   float: none;
   margin-left: 210px;
 }
+#bd_box.unibox p {
+  margin-bottom: 18px;
+  font-size: 14px;
+  line-height: 1.5;
+}
 
 /* Forms CSS */
 #step_list {
