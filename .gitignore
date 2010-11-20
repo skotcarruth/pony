@@ -1,3 +1,4 @@
 *.py[co]
 .DS_Store
 pony/env/settings_local.py
+pony/pony.sqlite
