@@ -5,7 +5,12 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
-    <title>{% block title %}Pony{% endblock %}</title>
+    <title>{% block title %}bdaypony{% endblock %}</title>
+    {% if settings.DEBUG %}
+      <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/jquery-ui/ui-darkness/jquery-ui-1.8.6.css" media="all" />
+    {% else %}
+      <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/ui-darkness/jquery-ui.css" media="all" />
+    {% endif %}
     <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/base.css" media="all" />
     {% block head %}{% endblock %}
   </head>
@@ -25,8 +30,10 @@
     {% block js %}
       {% if settings.DEBUG %}
         <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.4.4.js"></script>
+        <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.6.min.js"></script>
       {% else %}
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
       {% endif %}
       <script type="text/javascript" src="{{ MEDIA_URL }}js/base.js"></script>
       <script type="text/javascript">
@@ -35,7 +42,12 @@
           request_secure: {{ request.is_secure|yesno:"true,false" }},
           facebook_app_id: '{{ settings.FACEBOOK_APP_ID }}',
           facebook_callback_url: '{% url pony.social.views.callback service="facebook" %}',
-          facebook_token: '{{ request.user.get_profile.facebook_token }}'
+          facebook_token: '{{ request.user.get_profile.facebook_token }}',
+          twitter_authorize_url: '{% url pony.social.views.authorize_url service="twitter" %}',
+          twitter_callback_url: '{% url pony.social.views.callback service="twitter" %}',
+          twitter_query_url: '/social/oauth/twitter/',
+          twitter_username: '{{ request.user.get_profile.twitter_username }}',
+          twitter_user_id: '{{ request.user.get_profile.twitter_user_id }}'
         };
       </script>
     {% endblock %}

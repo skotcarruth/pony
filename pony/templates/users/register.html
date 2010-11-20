@@ -1,31 +1,37 @@
-{% extends "base.html" %}
+{% extends "base_box.html" %}
 
 {% block js %}
   {{ block.super }}
-  <script type="text/javascript" src="{{ MEDIA_URL }}js/share.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}js/social.js"></script>
 {% endblock %}
 
 {% block title %}{{ block.super }} | Register{% endblock %}
 
-{% block bd %}
-  <h1>Register</h1>
-
-  {% if gift %}
-    <p>Please register or login to create your pony. ({{ gift.name|capfirst }})</p>
-  {% endif %}
-
+{% block bd_help %}
   <p>
+    Use your <strong>Facebook</strong> or <strong>Twitter</strong> account to
+    speed things up &mdash; you’ll want to connect to them later anyway.
+  </p>
+{% endblock %}
+
+{% block bd_box %}
+  {% if gift %}
+    <ul id="step_list">
+      <li>Step 1</li>
+      <li class="selected">Step 2: Who are you?</li>
+    </ul>
+  {% endif %}
+  <p class="form_aside">
     Already registered?
     <a href="{% url pony.users.views.login %}{% if gift %}?next={{ gift.get_absolute_url }}{% endif %}">Login</a>
   </p>
-
   <div id="connect">
-    <button id="fb_connect_button" rel="register">Connect with Facebook</button>
+    <img id="fb_connect_button" rel="register" src="{{ MEDIA_URL }}images/facebook.png" />
+    <img id="tw_connect_button" rel="register" src="{{ MEDIA_URL }}images/twitter.png" />
   </div>
-
   <form method="POST">
     {% csrf_token %}
     {{ register_form.as_p }}
-    <p class="submit"><input type="submit" value="Submit" /></p>
+    <p class="submit"><input type="submit" class="bold purple" value="Complete &raquo;" /></p>
   </form>
 {% endblock %}

@@ -1,12 +1,12 @@
-{% extends "base.html" %}
+{% extends "base_unibox.html" %}
 
 {% block title %}{{ block.super }} | Login{% endblock %}
 
-{% block bd %}
+{% block bd_box %}
   <h1>Login</h1>
   <form method="POST">
     {% csrf_token %}
     {{ login_form.as_p }}
-    <p class="submit"><input type="submit" value="Login" /></p>
+    <p class="submit"><input type="submit" class="bold purple" value="Submit &raquo;" /></p>
   </form>
 {% endblock %}

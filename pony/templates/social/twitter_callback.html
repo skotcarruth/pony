@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Processing...</title></head>
+  <body>
+    <script type="text/javascript">
+      if (window.opener && !window.opener.closed) {
+        window.opener.pony.tw_handle_callback(
+          {% if user %}
+            {
+              'username': '{{ user.username }}',
+              'user_id': '{{ user.user_id }}'
+            }
+          {% else %}
+            null
+          {% endif %}
+        );
+      }
+      window.close();
+    </script>
+  </body>
+</html>

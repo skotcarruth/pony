@@ -10,7 +10,7 @@ from pony.gifts.models import Gift
 def add(request):
     """Create a new gift request."""
     if request.method == 'POST':
-        form = forms.GiftForm(request.POST)
+        form = forms.GiftForm(request.POST, request.FILES)
         if form.is_valid():
             gift = form.save()
             request.session['gift'] = gift

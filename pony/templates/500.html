@@ -1,0 +1,10 @@
+{% extends "base_unibox.html" %}
+
+{% block title %}{{ block.super }} | 500 Server Error{% endblock %}
+
+{% block bd_box %}
+  <h1>500 Server Error</h1>
+  <p>Shoot, we really whiffed that one.</p>
+  <p>You can hit your back button and try again, but let's be honest: It probably won't help. Rest assured we've already scolded whatever intern may or may not have screwed this up, and we're working hard on a solution.</p>
+  <p>You can always go to the <a href="{% url pony.views.index %}">home page</a> &mdash; that one usually works OK.</p>
+{% endblock %}

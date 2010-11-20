@@ -17,7 +17,7 @@
     <li class="selected">Step 1: What do you want?</li>
     <li>Step 2</li>
   </ul>
-  <form method="POST">
+  <form enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <p class="submit"><input type="submit" class="bold purple" value="Next Step &raquo;" /></p>
