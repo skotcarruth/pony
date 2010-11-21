@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.contrib import auth
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -9,6 +11,17 @@ from pony.gifts.models import Gift
 from pony.users import forms
 from pony.users.models import UserProfile
 
+
+def user_can_add_gift(user, override_now=None):
+    """Returns true if the user is allowed to add a new gift."""
+    profile = user.get_profile()
+
+    # Get all the gifts since the user's most recent birthday
+    now = override_now or datetime.utcnow() # Override for testing
+    last_birthday = profile.birthday.replace(year=now.year)
+    if now.date() <= last_birthday:
+        last_birthday = last_birthday.replace(year=now.year - 1)
+    return not Gift.objects.filter(user=user, gift_date__gt=last_birthday).exists()
 
 def login(request):
     """User login page."""
@@ -36,6 +49,7 @@ def dashboard(request):
     gifts = Gift.objects.filter(user=request.user)
     return render_to_response('users/dashboard.html', {
         'gifts': gifts,
+        'can_add_gift': user_can_add_gift(request.user)
     }, RequestContext(request))
 
 def register(request):
@@ -81,8 +95,14 @@ def register(request):
             # If the user session has a gift on it, redirect there
             gift = request.session.get('gift', None)
             if gift:
+                # Determine the gift date based on the current date
+                next_birthday = user_profile.birthday.replace(year=datetime.utcnow().year)
+                if datetime.utcnow().date() > next_birthday:
+                    next_birthday.replace(year=datetime.utcnow().year + 1)
+
+                # Fill in the gift details for this user
                 gift.user = user
-                gift.gift_date = user_profile.birthday
+                gift.gift_date = next_birthday
                 gift.status = gift.ACTIVE
                 gift.save()
                 del request.session['gift']
