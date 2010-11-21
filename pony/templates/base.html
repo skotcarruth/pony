@@ -18,7 +18,7 @@
     <div id="hd">
       {% block hd %}{% include "_header.html" %}{% endblock %}
     </div>
-    <div id="bd">
+    <div id="bd" class="{% block bd_class %}{% endblock %}">
       <div id="bd_content">
         {% block bd %}{% endblock %}
       </div>

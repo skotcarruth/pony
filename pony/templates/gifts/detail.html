@@ -1,43 +1,60 @@
-{% extends "base.html" %}
+{% extends "base_box.html" %}
 {% load humanize %}
 
 {% block title %}{{ block.super }} | Ponies | {{ gift.name|capfirst }}{% endblock %}
 
 {% block js %}
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'35f3de16-60fe-464d-9972-701177216d7c'});</script>
   {{ block.super }}
   <script type="text/javascript" src="{{ MEDIA_URL }}js/social.js"></script>
 {% endblock %}
 
-{% block bd %}
-  <h1>{{ gift.name|capfirst }}</h1>
-  <p>{{ gift.date|date:"m/d/Y" }}</p>
+{% block bd_class %}skinny_box{% endblock %}
 
+{% block bd_help %}
+  <div id="gift_image">
+    {% if gift.image %}
+      <img src="{{ gift.image.url }}" />
+    {% else %}
+      <img src="{{ MEDIA_URL }}images/gift_default.png" />
+    {% endif %}
+  </div>
+  <div id="gift_details">
+    <h1 class="name">{{ gift.name|capfirst }}</h1>
+    <span class="price">${{ gift.price|intcomma }}</span>
+    <div class="clear"></div>
+  </div>
+  <div id="gift_message">
+    <p class="gift_message_leadin">Message from {{ gift.user.get_profile.name }}:</p>
+    <p>{{ gift.description }}</p>
+  </div>
+  <div id="gift_share">
+    <p>
+      <span class="explainer">Know others who should chip in? Spread the word!</span>
+      <span class="st_facebook"></span><span class="st_twitter"></span><span class="st_sharethis"></span>
+    </p>
+  </div>
+{% endblock %}
+
+{% block bd_box %}
+{% with gift.user.get_profile as user_profile %}
+  <div id="intro">
+    {% if user_profile.image %}
+      <img src="{{ user_profile.image.url }}" />
+    {% else %}
+      <img src="{{ MEDIA_URL }}images/user_default.png" />
+    {% endif %}
+    <p>{{ gift.user.get_profile.name }}'s birthday is coming up on</p>
+    <p class="birthday">{{ gift.user.get_profile.birthday|date:"F j" }}</p>
+    <p>Let's chip in to help him get exactly what he wants.</p>
+    <div class="clear"></div>
+  </div>
   {% if request.user == gift.user %}
-    <div id="share">
-      <div id="share_facebook">
-        <button id="fb_connect_button">Connect with Facebook</button>
-      </div>
-      <div id="share_twitter">
-        Share on Twitter...
-      </div>
-      <div id="share_email">
-        Share through email...
-      </div>
-    </div>
+    
+  {% else %}
+    <form>
+      stuff
+    </form>
   {% endif %}
-
-  {% if gift.image %}
-    <img src="{{ gift.image. }}" />
-  {% endif %}
-  <p>{{ gift.description }}</p>
-  <p>${{ gift.price|intcomma }}</p>
-
-  {% if request.user != gift.user %}
-    <div id="give">
-      <a href="{% url pony.gifts.views.give gift_id=gift.id %}">
-        Give to this Pony
-      </a>
-    </div>
-  {% endif %}
-
+{% endwith %}
 {% endblock %}

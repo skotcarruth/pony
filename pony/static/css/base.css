@@ -153,6 +153,12 @@ a:hover, a:focus {
   font-size: 14px;
   line-height: 1.5;
 }
+#bd.skinny_box #bd_help {
+  width: 450px;
+}
+#bd.skinny_box #bd_box {
+  width: 390px;
+}
 
 /* Forms CSS */
 #step_list {
@@ -281,4 +287,69 @@ div.fake_file_input span {
 #fb_connect_button, #tw_connect_button {
   cursor: pointer;
   margin: 0 8px;
+}
+
+/* Gift */
+#gift_image {
+  width: 448px;
+  height: 278px;
+  background: #000;
+  border: 1px solid #111;
+}
+#gift_details {
+  margin-top: 12px;
+}
+#gift_details .name, #gift_details .price {
+  font-size: 26px;
+  color: #848484;
+  text-transform: none;
+  font-weight: bold;
+  margin: 0;
+}
+#gift_details .name {
+  float: left;
+}
+#gift_details .price {
+  float: right;
+}
+#gift_message {
+  margin-top: 20px;
+}
+#gift_message p {
+  font-size: 14px;
+  color: #111;
+}
+#gift_message .gift_message_leadin {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+#gift_share {
+  margin-top: 28px;
+  background: #f2f2f2;
+  border: 1px solid #848484;
+  padding: 8px 16px;
+}
+#gift_share p {
+  color: #111;
+  font-size: 14px;
+  margin: 0;
+}
+#gift_share .explainer {
+  margin-right: 14px;
+}
+#gift_share .stButton {
+  margin: 0;
+}
+#intro img {
+  float: left;
+  border: 1px solid #111;
+}
+#intro p {
+  margin: 0 0 10px 115px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+#intro .birthday {
+  font-size: 26px;
+  color: #848484;
 }
