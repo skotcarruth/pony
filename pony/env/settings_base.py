@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.humanize',
     'south',
+    'teaser',
     'users',
     'gifts',
     'social',

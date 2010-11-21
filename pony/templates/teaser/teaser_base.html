@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head %}
+  <style type="text/css">
+    html, body { background: url("/static/images/bg.gif") repeat; }
+    #ft { display: none; }
+    #bd { background: transparent url("/static/images/jason.png") no-repeat 810px 45px; }
+    #bd_content { min-height: 325px; }
+    #bd_box.teaser { float: none; min-height: 200px; }
+    #bd_box p.explainer { font-size: 17px; color: #8e8e8e; }
+    form label { width: 110px; }
+    form p.combo input, form p.combo select { width: 145px; margin-right: 10px; }
+    form p.submit input { margin-right: 40px; }
+    form ul.errorlist { padding-left: 125px; }
+    #sharethis { width: 478px; margin: 40px 15px 0; }
+  </style>
+{% endblock %}
+
+{% block js %}
+  <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'35f3de16-60fe-464d-9972-701177216d7c'});</script>
+{% endblock %}
+
+{% block hd %}{% endblock %}
+{% block ft %}{% endblock %}
+
+{% block bd %}
+  <div id="bd_box" class="teaser">
+    {% block bd_box %}{% endblock %}
+  </div>
+  <div id="sharethis">
+    <p>
+      <span class="explainer">Know anyone else who would like this? Spread the word!</span>
+      <span class="st_facebook"></span><span class="st_twitter"></span><span class="st_sharethis"></span>
+    </p>
+  </div>
+{% endblock %}

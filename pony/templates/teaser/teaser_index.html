@@ -1,0 +1,18 @@
+{% extends "teaser/teaser_base.html" %}
+
+{% block bd_box %}
+  <h1>Bday Pony is {{ adjective }}...</h1>
+  <p class="explainer">BdayPony.com is currently invite-only. But if you give us your email we'll let you know when it's your turn to ride.</p>
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.name.errors }}
+    <p>{{ form.name.label_tag }} {{ form.name }}</p>
+    {{ form.birthday_month.errors }}
+    {{ form.birthday_day.errors }}
+    <p class="combo"><label for="id_birthday_month">Birthday</label> {{ form.birthday_month }} {{ form.birthday_day }}</p>
+    {{ form.email.errors }}
+    <p>{{ form.email.label_tag }} {{ form.email }}</p>
+    <p class="submit"><input type="submit" class="bold pink" value="Saddle Up &raquo;" /></p>
+  </form>
+{% endblock %}
