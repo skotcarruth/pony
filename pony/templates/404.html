@@ -1,9 +1,20 @@
-{% extends "base_unibox.html" %}
-
-{% block title %}{{ block.super }} | 404 Not Found{% endblock %}
+{% extends "teaser/teaser_base.html" %}
 
 {% block bd_box %}
   <h1>404 Not Found</h1>
-  <p>Sorry, that's our bad. But we assure you no birthday wishes have been lost or harmed in any way.</p>
-  <p>We're pretty sure we can find the <a href="{% url pony.views.index %}">home page</a> if you want to go there.</p>
+  <p class="error">Sorry, that's our bad. But we assure you no birthday wishes have been lost or harmed in any way.</p>
+  <p class="error">We're pretty sure we can find the <a href="/">home page</a> if you want to go there.</p>
 {% endblock %}
+
+{% block sharethis %}{% endblock %}
+
+{# TEMP TEASER #}
+{# {% extends "base_unibox.html" %} #}
+{#  #}
+{# {% block title %}{{ block.super }} | 404 Not Found{% endblock %} #}
+{#  #}
+{# {% block bd_box %} #}
+{#   <h1>404 Not Found</h1> #}
+{#   <p>Sorry, that's our bad. But we assure you no birthday wishes have been lost or harmed in any way.</p> #}
+{#   <p>We're pretty sure we can find the <a href="{% url pony.views.index %}">home page</a> if you want to go there.</p> #}
+{# {% endblock %} #}

@@ -12,6 +12,7 @@
     form p.submit input { margin-right: 40px; }
     form ul.errorlist { padding-left: 125px; }
     #sharethis { width: 478px; margin: 40px 15px 0; }
+    #bd_box p.error { margin-bottom: 18px; font-size: 14px; line-height: 1.5; }
   </style>
 {% endblock %}
 
@@ -26,10 +27,12 @@
   <div id="bd_box" class="teaser">
     {% block bd_box %}{% endblock %}
   </div>
-  <div id="sharethis">
-    <p>
-      <span class="explainer">Know anyone else who would like this? Spread the word!</span>
-      <span class="st_facebook"></span><span class="st_twitter"></span><span class="st_sharethis"></span>
-    </p>
-  </div>
+  {% block sharethis %}
+    <div id="sharethis">
+      <p>
+        <span class="explainer">Know anyone else who would like this? Spread the word!</span>
+        <span class="st_facebook"></span><span class="st_twitter"></span><span class="st_sharethis"></span>
+      </p>
+    </div>
+  {% endblock %}
 {% endblock %}
