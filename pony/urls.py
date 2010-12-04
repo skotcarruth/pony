@@ -6,7 +6,6 @@ from django.views.generic.simple import direct_to_template
 
 admin.autodiscover()
 
-### TEMP TEASER: These real urlpatterns are overwritten below!
 urlpatterns = patterns('',
     # Flat URLs
     url(r'^$', 'pony.views.index'),
@@ -21,12 +20,6 @@ urlpatterns = patterns('',
 
     # Django Apps
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-)
-
-### TEMP TEASER: This is the temp root urlconf for the teaser site
-urlpatterns = patterns('',
-    url(r'^', include('pony.teaser.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )
 
