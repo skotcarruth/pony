@@ -13,10 +13,16 @@
 {% endblock %}
 
 {% block bd_box %}
-  <ul id="step_list">
-    <li class="selected">Step 1: What do you want?</li>
-    <li>Step 2</li>
-  </ul>
+  {% if request.user.is_authenticated %}
+    <ul id="step_list">
+      <li>What do you want?</li>
+    </ul>
+  {% else %}
+    <ul id="step_list">
+      <li class="selected">Step 1: What do you want?</li>
+      <li>Step 2</li>
+    </ul>
+  {% endif %}
   <form enctype="multipart/form-data" method="POST">
     {% csrf_token %}
     {{ form.as_p }}

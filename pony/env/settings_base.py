@@ -104,6 +104,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.humanize',
     'south',
+    'sorl.thumbnail',
     'teaser',
     'users',
     'gifts',

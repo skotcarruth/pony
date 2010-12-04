@@ -3,3 +3,4 @@
 pony/env/settings_local.py
 pony/pony.sqlite
 pony/static/uploads/*
+pony/static/cache/*

@@ -14,13 +14,13 @@ from pony.users.models import UserProfile
 
 def user_can_add_gift(user, override_now=None):
     """Returns true if the user is allowed to add a new gift."""
-    profile = user.get_profile()
+    try:
+        profile = user.get_profile()
+    except UserProfile.DoesNotExist:
+        return False
 
     # Get all the gifts since the user's most recent birthday
-    now = override_now or datetime.utcnow() # Override for testing
-    last_birthday = profile.birthday.replace(year=now.year)
-    if now.date() <= last_birthday:
-        last_birthday = last_birthday.replace(year=now.year - 1)
+    last_birthday = profile.last_birthday(override_now=override_now)
     return not Gift.objects.filter(user=user, gift_date__gt=last_birthday).exists()
 
 def login(request):

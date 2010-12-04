@@ -1,21 +1,66 @@
 {% extends "base.html" %}
+{% load humanize thumbnail %}
 
-{% block title %}{{ block.super }} | Dashboard{% endblock %}
+{% block title %}{{ block.super }} | My Gifts{% endblock %}
 
 {% block bd %}
   <h1>My Gifts</h1>
 
   <ul id="gifts">
     {% if can_add_gift %}
-      <li>
-        {% url pony.gifts.views.add %}
+      <li class="box">
+        <div class="new_image">
+          <img src="{{ MEDIA_URL }}images/big_plus.png" />
+        </div>
+        <div class="new_details">
+          <p>Ready to get started? <a href="{% url pony.gifts.views.add %}">Add your next birthday gift!</a></p>
+        </div>
+        <div class="gift_controls">
+          <p class="year">{{ request.user.get_profile.next_birthday.year }}</p>
+        </div>
+        <div class="clear"></div>
       </li>
     {% endif %}
     {% for gift in gifts %}
-      <li>
-        <a href="{{ gift.get_absolute_url }}">{{ gift.name|capfirst }}</a>
-        ({{ gift.gift_date|date:"m/d/Y" }}) -
-        {{ gift.get_status_display|capfirst }}
+      <li class="box">
+        <div class="gift_image">
+          {% thumbnail gift.image "187x116" as image %}
+            <img src="{{ image.url }}" style="margin: {{ image|margin:"187x116" }}" />
+          {% empty %}
+            <img src="{{ MEDIA_URL }}images/gift_default_thumb.jpg" />
+          {% endthumbnail %}
+        </div>
+        <div class="gift_details">
+          <h2>{{ gift.name|capfirst }}</h2>
+          <p class="message">{{ gift.description }}</p>
+        </div>
+        <div class="gift_money">
+          <p class="label">You need:</p>
+          <p class="amount">${{ gift.price|intcomma }}</p>
+          <p class="label">Your friends ponied up:</p>
+          {% if gift.is_completed %}
+            <p class="amount green">${{ gift.amount_raised|intcomma }}</p>
+          {% else %}
+            <p class="amount">???</p>
+          {% endif %}
+        </div>
+        <div class="gift_controls">
+          <p class="year">{{ gift.gift_date.year }}</p>
+          {% if gift.is_editable %}
+            <a href="">Edit Gift</a>
+          {% endif %}
+          {% if gift.is_completed %}
+            <a href="">Withdraw Funds</a>
+            <a href="">View Friends</a>
+          {% else %}
+            {% if gift.is_published %}
+              <a href="{{ gift.get_absolute_url }}">View &amp; Share</a>
+            {% else %}
+              <a href="{{ gift.get_absolute_url }}">Preview &amp; Publish</a>
+            {% endif %}
+          {% endif %}
+        </div>
+        <div class="clear"></div>
       </li>
     {% endfor %}
   </ul>

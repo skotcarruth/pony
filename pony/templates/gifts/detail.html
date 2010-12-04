@@ -1,7 +1,7 @@
 {% extends "base_box.html" %}
-{% load humanize %}
+{% load humanize thumbnail %}
 
-{% block title %}{{ block.super }} | Ponies | {{ gift.name|capfirst }}{% endblock %}
+{% block title %}{{ block.super }} | {{ gift.name|capfirst }} for {{ gift.user.get_profile.name }}{% endblock %}
 
 {% block js %}
   <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script><script type="text/javascript">stLight.options({publisher:'35f3de16-60fe-464d-9972-701177216d7c'});</script>
@@ -13,11 +13,11 @@
 
 {% block bd_help %}
   <div id="gift_image">
-    {% if gift.image %}
-      <img src="{{ gift.image.url }}" />
-    {% else %}
+    {% thumbnail gift.image "448x278" as image %}
+      <img src="{{ image.url }}" style="margin: {{ image|margin:"448x278" }}" />
+    {% empty %}
       <img src="{{ MEDIA_URL }}images/gift_default.jpg" />
-    {% endif %}
+    {% endthumbnail %}
   </div>
   <div id="gift_details">
     <h1 class="name">{{ gift.name|capfirst }}</h1>
