@@ -177,6 +177,8 @@ strong {
   font-size: 18px;
   line-height: 1.4;
   margin: 8px 0;
+}
+#flash .message.jason p {
   padding-right: 220px;
 }
 #flash .message_jason {

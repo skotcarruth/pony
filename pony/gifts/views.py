@@ -41,6 +41,13 @@ def detail(request, gift_id=None):
     if not gift.visible_to_user(request.user):
         raise Http404
 
+    # Only the user can make changes to his/her gift
+    if request.method == 'POST' and gift.user == request.user:
+        if request.POST.get('publish', False):
+            # Publish the gift
+            gift.status = gift.ACTIVE
+            gift.save()
+
     return render_to_response('gifts/detail.html', {
         'gift': gift,
     }, RequestContext(request))

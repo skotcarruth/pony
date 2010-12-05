@@ -14,7 +14,7 @@
 {% block flash %}
   {{ block.super }}
   {% if request.session.new_user %}
-    <div class="message box">
+    <div class="message box jason">
       <div class="message_jason"></div>
       <p>
         <strong>Welcome to BdayPony.</strong> {{ gift.user.get_profile.name }}
@@ -24,6 +24,33 @@
       <p>
         Learn more about <a href="{% url how_it_works %}">how BdayPony works</a>.
       </p>
+    </div>
+  {% endif %}
+  {% if request.user == gift.user %}
+    <div class="message box">
+      {% if gift.status == gift.DRAFT %}
+        <p>
+          <strong>This is a preview.</strong> Your gift is currently saved as
+          a draft and hidden from other users. Click the button when you're
+          ready to publish it.
+        </p>
+        <form method="POST">{% csrf_token %}
+          <input type="submit" name="publish" value="Publish" />
+        </form>
+      {% endif %}
+      {% if gift.status == gift.ACTIVE %}
+        <p>
+          <strong>Your gift is live!</strong> Spread the word and get your
+          friends to all chip in.
+        </p>
+      {% endif %}
+      {% if gift.status == gift.COMPLETED %}
+        <p>
+          <strong>This gift is finished.</strong> Here's hoping you had a great
+          birthday! See how much your friends chipped in.
+        </p>
+        <a href="">View Friends</a>
+      {% endif %}
     </div>
   {% endif %}
 {% endblock %}
