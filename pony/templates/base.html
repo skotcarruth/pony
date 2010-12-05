@@ -32,6 +32,17 @@
       {% block hd %}{% include "_header.html" %}{% endblock %}
     </div>
     <div id="bd" class="{% block bd_class %}{% endblock %}">
+      <div id="flash">
+        {% block flash %}
+          {% if messages %}
+            <ul id="messages">
+              {% for message in messages %}
+                <li class="{{ message.tags }} message box">{{ message }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% endblock %}
+      </div>
       <div id="bd_content">
         {% block bd %}{% endblock %}
       </div>

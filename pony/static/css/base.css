@@ -91,6 +91,9 @@ a {
 a:hover, a:focus {
   text-decoration: underline;
 }
+strong {
+  font-weight: bold;
+}
 .bold {
   font-family: "Arial Black",Gadget,sans-serif;
   font-size: 14px;
@@ -156,6 +159,33 @@ a:hover, a:focus {
 }
 #more_info a {
   color: #c7c7c7;
+}
+
+/* Flash */
+#flash {
+  padding-top: 25px;
+  width: 960px;
+  margin: 0 auto;
+}
+#flash .message {
+  margin: 0;
+  padding: 10px 25px;
+  position: relative;
+}
+#flash .message p {
+  color: #111;
+  font-size: 18px;
+  line-height: 1.4;
+  margin: 8px 0;
+  padding-right: 220px;
+}
+#flash .message_jason {
+  position: absolute;
+  top: -35px;
+  right: 20px;
+  width: 175px;
+  height: 175px;
+  background: url(/static/images/jason_175.png) top right no-repeat;
 }
 
 /* Body */

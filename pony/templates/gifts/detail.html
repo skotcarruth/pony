@@ -11,6 +11,23 @@
 
 {% block bd_class %}skinny_box{% endblock %}
 
+{% block flash %}
+  {{ block.super }}
+  {% if request.session.new_user %}
+    <div class="message box">
+      <div class="message_jason"></div>
+      <p>
+        <strong>Welcome to BdayPony.</strong> {{ gift.user.get_profile.name }}
+        told us what they wanted for their birthday, so we're giving you an
+        easy way to chip in for the gift.
+      </p>
+      <p>
+        Learn more about <a href="{% url how_it_works %}">how BdayPony works</a>.
+      </p>
+    </div>
+  {% endif %}
+{% endblock %}
+
 {% block bd_help %}
   <div id="gift_image">
     {% thumbnail gift.image "448x278" as image %}
